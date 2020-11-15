@@ -1,0 +1,16 @@
+sudo apt update -y && sudo apt upgrade -y
+#Tomcat:
+sudo apt-cache search tomcat
+sudo apt install -y tomcat9
+sudo apt install -y net-tools
+sudo netstat -tulpn  grep 8080
+systemctl status tomcat9
+cd /var/lib/tomcat9/webapps/ROOT/ ; sudo wget https://raw.githubusercontent.com/mariosevic/test/main/index.jsp
+sudo nano /var/lib/tomcat9/conf/web.xml
+cat /var/lib/tomcat9/webapps/ROOT/index.jsp
+#Apache:
+sudo apt-get install -y apache2
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+cd /etc/apache2/sites-available ; sudo wget https://raw.githubusercontent.com/mariosevic/test/main/test.conf
+sudo apache2ctl configtest
