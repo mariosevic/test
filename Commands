@@ -14,3 +14,4 @@ sudo a2enmod proxy
 sudo a2enmod proxy_http
 cd /etc/apache2/sites-available ; sudo wget https://raw.githubusercontent.com/mariosevic/test/main/test.conf
 sudo apache2ctl configtest
+sudo systemctl reload apache2
