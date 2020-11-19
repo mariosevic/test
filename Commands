@@ -15,3 +15,29 @@ sudo a2enmod proxy_http
 cd /etc/apache2/sites-available ; sudo wget https://raw.githubusercontent.com/mariosevic/test/main/test.conf
 sudo apache2ctl configtest
 sudo systemctl reload apache2
+#PHP
+sudo apt install -y php libapache2-mod-php php-mysql
+php -v
+#MySQL
+sudo apt install -y mysql-server
+sudo mysql_secure_installation
+sudo mysql -u root -p
+mysql> CREATE DATABASE tasksdb;
+mysql> CREATE USER 'tasks_user'@'localhost' IDENTIFIED BY 'asiosopass';
+mysql>GRANT ALL PRIVILEGES ON tasksdb.* TO 'tasks_user'@'localhost';
+mysql> SHOW DATABASES;
+mysql>quit
+mysql -u tasks_user -p
+
+CREATE TABLE tasksdb.tasks_list (
+    item_id INT AUTO_INCREMENT,
+    content VARCHAR(255),
+    PRIMARY KEY(item_id)
+);
+
+mysql>INSERT INTO tasksdb.tasks_list (content) VALUES ("Apache Tomcat");
+mysql>INSERT INTO tasksdb.tasks_list (content) VALUES ("Apache web server");
+mysql>INSERT INTO tasksdb.tasks_list (content) VALUES ("PHP & MySQL");
+mysql>INSERT INTO tasksdb.tasks_list (content) VALUES ("SSL cert");
+SELECT * FROM tasksdb.tasks_list;
+
