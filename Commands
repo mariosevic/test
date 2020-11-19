@@ -20,7 +20,7 @@ sudo apt install -y php libapache2-mod-php php-mysql
 php -v
 #MySQL
 sudo apt install -y mysql-server
-sudo mysql_secure_installation
+sudo mysql_secure_installation (mariopass)
 sudo mysql -u root -p
 mysql> CREATE DATABASE tasksdb;
 mysql> CREATE USER 'tasks_user'@'localhost' IDENTIFIED BY 'asiosopass';
@@ -39,5 +39,14 @@ mysql>INSERT INTO tasksdb.tasks_list (content) VALUES ("Apache Tomcat");
 mysql>INSERT INTO tasksdb.tasks_list (content) VALUES ("Apache web server");
 mysql>INSERT INTO tasksdb.tasks_list (content) VALUES ("PHP & MySQL");
 mysql>INSERT INTO tasksdb.tasks_list (content) VALUES ("SSL cert");
-SELECT * FROM tasksdb.tasks_list;
+mysql>SELECT * FROM tasksdb.tasks_list;
+mysql>quit
+cd /var/lib/tomcat9/webapps/ROOT/ ; sudo wget https://raw.githubusercontent.com/mariosevic/test/main/tasks.php
+cat tasks.php
+sudo systemctl restart apache2
+#SSL
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+ sudo certbot --apache
+
 
